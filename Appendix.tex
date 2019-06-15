@@ -1,0 +1,123 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{rotating}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{subfig}
+\usepackage{relsize}
+\usepackage{lmodern}
+\usepackage{authblk}
+\usepackage[a4paper, left=0.9cm, right=0.9cm, top=2.0cm, bottom=2.0cm, headsep=1.2cm]{geometry}
+\renewcommand\Authand{ , }
+\renewcommand\Authands{, }
+\renewcommand\Affilfont{\small}
+
+\title{Appendix}
+\author{m.b.kruk }
+\date{March 2019}
+\begin{document}
+\def\Res{\qopname\relax m{Res}}
+\maketitle
+
+\section{Partition function and distribution $P_{cl}(N_{ex})$ for particles on the ring - classical fields approximation}
+Let $n$ - cutoff parameter, $E_{-n}...E_0...E_n$ - energies of the trap (all positive), N - number of particles, $\beta=\frac{1}{k_B T}$. Complex amplitudes satisfy:
+\begin{equation*}
+\sum_{j=-n}^n  |\alpha_j|^2=N
+\end{equation*}
+Partition function:
+
+\begin{equation*}
+Z_N(\beta)=\int \frac{\mathrm{d}^2 \alpha_{-n}}{\pi}... \int \frac{\mathrm{d}^2 \alpha_n}{\pi}  \; e^{- \beta \sum\displaylimits_{j=-n}^n E_j |\alpha_j|^2} \delta (N-\sum_{j=-n}^n  |\alpha_j|^2)
+\end{equation*}
+We use delta function representation:
+
+\begin{equation*}
+\delta (N-\sum_{j=-n}^n |\alpha_j|^2)=\frac{1}{2 \pi} \int\displaylimits_{-\infty}^{\infty} \mathrm{d} \xi \; e^{i \xi (N-\sum_{j=-n}^n |\alpha_j|^2)}
+\end{equation*}
+Hence:
+\begin{equation*}
+    Z_N(\beta)=\frac{1}{2\pi}\int\displaylimits_{-\infty}^{\infty} \mathrm{d} \xi e^{i \xi N} \cdot {\Large I_{-n} . . . I_n}
+\end{equation*}
+where:
+\begin{equation*}
+    I_k=\int \frac{\mathrm{d}^2 \alpha_{k}}{\pi}e^{-|\alpha_k|^2(\beta E_k+i \xi)}=\frac{1}{\beta E_k+ i \xi}
+\end{equation*}
+All energies except $E_0$ are double-degenerated ($E_i=E_{-i}$):
+\begin{equation*}
+    Z_N(\beta)=\frac{1}{2 \pi} \int\displaylimits_{-\infty}^{\infty} \mathrm{d} \xi \; e^{i \xi N} \prod _{j=-n}^{n} \frac{1}{\beta E_j+i \xi}=(-1)^{n+1}\frac{i}{2\pi}\int\displaylimits_{-\infty}^{\infty} \mathrm{d} \xi \; e^{i \xi N} \frac{1}{\xi- i\beta E_0} \prod_{j=1}^n\frac{1}{(\xi - i \beta E_j)^2}
+\end{equation*}
+To calculate above integral we consider function: $f(z):=\frac{e^{izN}}{z-i\beta E_0}\prod_{j=1}^n\frac{1}{(z-i\beta E_j)^2}$ and integrate it over semicircle in the upper half-plane using the residue theorem (integral over arc vanishes in the limit of infinite radius). For $z=i \beta E_0$ there is a pole of order 1, and for $z=i \beta E_k$ , $k \neq 0$ we have poles of order 2.
+Partition function follows from the residue theorem formula:
+\begin{equation*}
+\begin{aligned}
+   & Z_N(\beta)=e^{-\beta E_0 N} \prod_{j=1}^n \frac{1}{(\beta E_0 -\beta E_j)^2}\\&-\sum_{k=1}^n \Bigg[ \frac{e^{-\beta E_k N}}{\beta E_k- \beta E_0} \prod_{\substack{j=1\\j \neq k}}^n \frac{1}{(\beta E_k -\beta E_j)^2}\Bigg(N+2\sum_{\substack{l=1\\l \neq k}}^n \frac{1}{\beta E_k-\beta E_l}+ \frac{1}{\beta E_k -\beta E_0}\Bigg) \Bigg]
+  \end{aligned}  
+\end{equation*}
+In order to calculate the probability of having $N_{ex}$ particles excited and the $N_0=N-N_{ex}$ particles occupying the ground state we use following formula ~\cite{weiss1997particle}
+\begin{equation}
+\label{eq:pnex}
+    P(N_{ex})=\frac{Z_{N_{ex}}}{Z_N}
+\end{equation}
+where $Z_{N_{ex}}$ is partition function calculated for situation where $N_{ex}$ atoms are excited and the rest occupy the ground state
+\begin{equation*}
+    Z_{N_{ex}}(\beta)=\int \frac{\mathrm{d}^2 \alpha_{-n}}{\pi}... \int \frac{\mathrm{d}^2 \alpha_{-1}}{\pi} \int \frac{\mathrm{d}^2 \alpha_{1}}{\pi} ... \int \frac{\mathrm{d}^2 \alpha_{n}}{\pi} \; e^{-\beta E_0 N_0} \; e^{- \beta \sum_{j \neq0} E_j |\alpha_j|^2} \delta (N_{ex}-\sum_{\substack{j=-n\\j \neq 0}}^n  |\alpha_j|^2)
+\end{equation*}
+$Z_{N_{ex}}$ is calculated using exactly the same method as in the case of $Z_N$:
+\begin{equation*}
+Z_{N_{ex}}(\beta)=e^{-\beta E_0 N_0}\sum_{k=1}^n e^{-\beta E_k N_{ex}} \prod_{\substack{j=1\\j \neq k}}^n \frac{1}{(\beta E_k -\beta E_j)^2} \Bigg(N_{ex}+2\sum_{\substack{l=1\\l \neq k}}^n \frac{1}{\beta E_k-\beta E_l}\Bigg)
+\end{equation*}
+Formula for $P_{cl}(N_{ex})$:
+    \begin{equation*}
+    P_{cl}(N_{ex})=\frac{e^{-\beta E_0 N_0}\sum_{k=1}^n e^{-\beta E_k N_{ex}} \prod_{\substack{j=1\\j \neq k}}^n \frac{1}{(\beta E_k -\beta E_j)^2} \Bigg(N_{ex}+2\sum_{\substack{l=1\\l \neq k}}^n \frac{1}{\beta E_k-\beta E_l}\Bigg)}{e^{-\beta E_0 N} \prod_{j=1}^n \frac{1}{(\beta E_0 -\beta E_j)^2}\\-\sum_{k=1}^n  \frac{e^{-\beta E_k N}}{\beta E_k- \beta E_0} \prod_{\substack{j=1\\j \neq k}}^n \frac{1}{(\beta E_k -\beta E_j)^2}\Bigg(N+2\sum_{\substack{l=1\\l \neq k}}^n \frac{1}{\beta E_k-\beta E_l}+ \frac{1}{\beta E_k -\beta E_0}\Bigg) }
+   \end{equation*}
+
+\section{Partition function and distribution $P_{exac}(N_{ex})$ for particles on the ring - exact formula}
+Again we consider $N$ particles, $E_{-\infty},...,E_0,...,E_{\infty}$ - energies of the trap (all positive). Let $n_i$ be occupation of the $i-th$ state. Partition function:
+\begin{equation*}
+    Z_N(\beta)=\sum_{n_{-\infty}=0}^{\infty}...\sum_{n_{\infty}=0}^{\infty} e^{-\beta(\sum_{j=-\infty}^{\infty}E_j n_j)} \delta_{N,\sum_{j=-\infty}^{\infty}n_j}
+\end{equation*}
+We use  integral representation of the Kronecker delta:
+\begin{equation*}
+    \delta_{N,\sum_{j=-\infty}^{\infty}n_j}=\frac{1}{2\pi} \int\displaylimits_0^{2\pi} \mathrm{d} \xi \; e^{i \xi (N-\sum_{j=-\infty}^{\infty}n_j)}
+\end{equation*}
+By changing order of summation and integration we are able to evaluate sums and obtain
+\begin{equation*}
+    Z_N(\beta)=\frac{1}{2\pi} \int\displaylimits_0^{2\pi} \mathrm{d} \xi \; e^{i \xi N} \prod_{j=-\infty}^{\infty} \frac{1}{1-e^{-(i \xi + \beta E_j)}}
+\end{equation*}
+All energies except $E_0$ are double-degenerated ($E_i=E_{-i}$):
+\begin{equation*}
+Z_N(\beta)=\frac{1}{2\pi} \int\displaylimits_0^{2\pi} \mathrm{d} \xi \; \frac{e^{i \xi N}}{1-e^{-(i\xi+\beta E_0)}}\prod_{j=1}^{\infty} \frac{1}{(1-e^{-(i \xi + \beta E_j)})^2}
+\end{equation*}
+Calculating the integral above is equivalent to integrating function $h(z)=\frac{z^N}{z-e^{-\beta E_0}}\prod_{j=1}^{\infty}\frac{z^2}{(z-e^{-\beta E_j})^2}$ over the unit circle.
+\begin{equation*}
+    Z_N(\beta)=\frac{1}{2 \pi i}\oint_{C(1)} \mathrm{d}z \; \frac{z^N}{z-e^{-\beta E_0}}\prod_{j=1}^{\infty}\frac{z^2}{(z-e^{-\beta E_j})^2}
+\end{equation*}
+Once again we employ the residue theorem method. For $z=e^{-\beta E_0}$ there is a first-order pole and in $z=e^{-\beta E_k}$, $k \neq 0$ we have poles of order 2. We obtain:
+
+\begin{equation*}
+\begin{aligned}
+    &Z_N(\beta)=e^{-\beta E_0 N} \prod _{j=1}^{\infty} \frac{1}{(1-e^{-\beta(E_j-E_0)})^2}\\&+\sum_{k=1}^{\infty}\frac{e^{-\beta E_k N}}{1-e^{-\beta(E_0-E_k)}}\prod_{\substack{j=1\\j \neq k}}^{\infty} \frac{1}{(1-e^{-\beta(E_j-E_k)})^2} \Bigg[ N+1 +\frac{1}{1-e^{-\beta (E_k-E_0)}}+2\sum_{\substack{l=1\\l \neq k}}^{\infty} \frac{1}{1-e^{-\beta(E_k-E_l)}} \Bigg]
+    \end{aligned}
+\end{equation*}
+Again we calculate $Z_{N_{ex}}$
+\begin{equation*}
+     Z_{N_{ex}}(\beta)=\sum_{n_{-\infty}=0}^{\infty}...\sum_{n_{-1}=0}^{\infty}\sum_{n_{1}=0}^{\infty}...\sum_{n_{\infty}=0}^{\infty}e^{- \beta E_0 N_0} e^{-\beta(\sum_{j \neq 0}E_j n_j)} \delta_{N_{ex},\sum_{j \neq 0}n_j}
+\end{equation*}
+Following the same steps as in the case of $Z_N$ we get:
+
+\begin{equation*}
+   Z_{N_{ex}}=e^{-\beta E_0 N_0}\sum_{k=1}^{\infty} e^{-\beta E_k N_{ex}} \prod_{\substack{j=1\\j \neq k}}^{\infty} \frac{1}{(1-e^{-\beta(E_j-E_k)})^2}\Bigg[N_{ex}+1 + 2\sum_{\substack{l=1\\l \neq k}}^{\infty} \frac{1}{1-e^{-\beta(E_k-E_l)}} \Bigg]
+\end{equation*}
+Again we calculate $P_{exac}(N_{ex})$ with the help of \ref{eq:pnex}:
+\begin{equation*}
+    P_{exac}(N_{ex})=\frac{e^{-\beta E_0 N_0}\sum_{k=1}^{\infty} e^{-\beta E_k N_{ex}} \prod_{\substack{j=1\\j \neq k}}^{\infty} \frac{1}{(1-e^{-\beta(E_j-E_k)})^2}\Bigg(N_{ex}+1 + 2\sum_{\substack{l=1\\l \neq k}}^{\infty} \frac{1}{1-e^{-\beta(E_k-E_l)}} \Bigg)}{e^{-\beta E_0 N} \prod _{j=1}^{\infty} \frac{1}{(1-e^{-\beta(E_j-E_0)})^2}+\sum_{k=1}^{\infty}\frac{e^{-\beta E_k N}}{1-e^{-\beta(E_0-E_k)}}\prod_{\substack{j=1\\j \neq k}}^{\infty} \frac{1}{(1-e^{-\beta(E_j-E_k)})^2} \Bigg( N+1 +\frac{1}{1-e^{-\beta (E_k-E_0)}}+2\sum_{\substack{l=1\\l \neq k}}^{\infty} \frac{1}{1-e^{-\beta(E_k-E_l)}} \Bigg)}
+\end{equation*}
+
+\bibliographystyle{unsrt}
+\bibliography{bibliography.bib}
+\end{document}
